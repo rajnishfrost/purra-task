@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const tariffSchema = new mongoose.Schema({
-  hsCode: { type: String, required: true },
-  country: { type: String, required: true },
-  importDuty: { type: Number, required: true },
+  hsCode: { type: String, default: null },
+  country: { type: String, default: null },
+  importDuty: { type: Number, default: null },
   additionalTaxes: {
-    VAT: { type: Number, required: true },
-    Excise: { type: Number, required: true },
+    VAT: { type: Number, default: null },
+    Excise: { type: Number, default: null }
   },
-  totalDuties: { type: Number, required: true },
-  notes: { type: String },
+  totalDuties: { type: Number, default: null },
+  notes: { type: String, default: null }
 }, { timestamps: true });
 
 const Tariff = mongoose.model('Tariff', tariffSchema);

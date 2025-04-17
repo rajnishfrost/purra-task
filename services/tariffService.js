@@ -8,29 +8,27 @@ const fetchTariffData = async (hsCode, countryCode) => {
 
     // Safe extraction paths
     const dataSet = response.data?.dataSets?.[0]?.series?.["0:0:0:0:0"]?.observations;
-    const import_duty = dataSet?.["0"]?.[0] ?? null;
+    const importDuty = Number(dataSet?.["0"]?.[0]) ?? null;
 
-    const productInfo = response.data?.structure?.dimensions?.series?.find(d => d.id === "PRODUCTCODE");
     const reporterInfo = response.data?.structure?.dimensions?.series?.find(d => d.id === "REPORTER");
 
-    const hs_code = productInfo?.values?.[0]?.id || hsCode;
     const country = reporterInfo?.values?.[0]?.name || countryCode;
 
     const VAT = null;
     const Excise = null;
 
-    const total_duties = [import_duty, VAT, Excise].filter(n => typeof n === "number").reduce((a, b) => a + b, 0);
+    let totalDuties = Number([importDuty, VAT, Excise].filter(n => typeof n === "number").reduce((a, b) => a + b, 0));
 
     const custom = {
-      hs_code,
+      hsCode,
       country,
-      import_duty,
+      importDuty,
       additional_taxes: {
         VAT,
         Excise
       },
-      total_duties,
-      notes: "Standard tariff for non-preferential trade route"
+      totalDuties,
+      notes: response?.data?.dataSets[0]?.series["0:0:0:0:0"]?.annotations[0]
     };
 
     return custom;
