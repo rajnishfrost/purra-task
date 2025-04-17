@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "223caf0d-8bfd-4110-b301-f6cf4b373bf0",
+		"name": "Purra Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33118745"
+	},
+	"item": [
+		{
+			"name": "Get HS Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hs-codes/all-hs-codes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hs-codes",
+						"all-hs-codes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Country Code",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/hs-codes/supported-countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hs-codes",
+						"supported-countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tarrif Lookup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hs-codes/950691/tariff?country=840",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hs-codes",
+						"950691",
+						"tariff"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "840"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
